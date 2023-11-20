@@ -2,17 +2,16 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from .models import Post
 from django.contrib.auth import authenticate
-
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate , login 
 
 def user_login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         remember_me = request.POST.get('remember_me', False)
-        user = auth.authenticate(request, username=username, password=password)
+        user = authenticate(request, username=username, password=password)
         if user is not None:
-            auth.login(request, user)
+            login(request, user)
             messages.success(request, 'Login successful!')
             return redirect('home')  
         else:
