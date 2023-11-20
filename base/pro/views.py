@@ -4,7 +4,7 @@ from .models import Post
 from django.contrib.auth import authenticate
 from django.contrib.auth import authenticate , login 
 
-def user_login(request):
+def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -16,6 +16,8 @@ def user_login(request):
             return redirect('home')  
         else:
             messages.error(request, 'Invalid username or password.')
+
+    return render(request, 'login.html')
 def register(request):
     return render(request, 'register.html')
 def home(request):
