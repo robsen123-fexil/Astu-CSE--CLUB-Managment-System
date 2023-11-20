@@ -3,7 +3,7 @@ from django.contrib import messages
 from .models import Post
 from django.contrib.auth import authenticate
 
-
+from django.contrib.auth import authenticate, login as auth_login
 
 def user_login(request):
     if request.method == 'POST':
