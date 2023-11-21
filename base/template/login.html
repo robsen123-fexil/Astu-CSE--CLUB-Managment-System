@@ -7,6 +7,16 @@
   <title>Document</title>
 </head>
 <body>
+  {% if messages %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
   <form method="post" action="{% url 'login_view' %}">
     {% csrf_token %}
     <!-- Username input -->

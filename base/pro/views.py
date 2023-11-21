@@ -23,19 +23,17 @@ def register(request):
          name=request.POST['name']
          username=request.POST['username']        
          password=request.POST['password']
-         confirm_password=request.POST['password2']
+         confirm_password=request.POST['confirm_password']
 
          if password == confirm_password:
               if User.objects.filter(username=username).exists():
                 messages.info(request, "Username Already Taken")
                 return redirect('register')
-              elif User.objects.filter(name=name).exists():
-                  messages.info(request," This Name Is Already Registered ")    
-                  return redirect('register')
+             
               else:
-                  user=User.objects.create_user(name=name, username=username,password=password)
+                  user=User.objects.create_user( username=username,password=password)
                   user.save()
-                  return redirect('login')
+                  return redirect('login_view')
          else:
               messages.info(request, "Password Is Not The Same")
               return redirect('register')
