@@ -50,6 +50,9 @@ def register(request):
 def home(request):
         posts=Post.objects.all()
         return render(request, 'home.html',{'posts':posts})
+def posts(request):
+         posts=posts.objects.all(all)
+         return render(request,'posts.html' , {'posts':posts})       
         
 
     

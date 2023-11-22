@@ -129,9 +129,10 @@ STATICFILES_DIRS = [
 ]
 # settings.py
 
-import os
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+# Static files (CSS, JavaScript, images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+# Media files (uploaded by users)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / "media"
