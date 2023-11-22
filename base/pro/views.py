@@ -48,6 +48,9 @@ def register(request):
     else:   
         return render(request, 'register.html')
 def home(request):
-        return render(request, 'home.html')
-def index(request):
-    return render(request, 'index.html')
+        posts=Post.objects.all()
+        return render(request, 'home.html',{'posts':posts})
+        
+
+    
+    
