@@ -7,7 +7,7 @@ from django.contrib.auth.models import User , auth
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.shortcuts import render, get_object_or_404
+from .forms import PostForm
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -18,13 +18,15 @@ def login_view(request):
         if user is not None:
             login(request, user)
             
+            # Check if the user is admin and the password is 'password'
+            if username == 'admin' and password == '12345':
+                return redirect('adminpage')
+            
             return redirect('home')
         else:
             messages.error(request, 'Invalid username or password.')
 
     return render(request, 'login.html')
-
-
     
 def register(request):
     if request.method=='POST':
@@ -53,7 +55,18 @@ def home(request):
 def posts(request, pk):
       posts=Post.objects.get(id=pk)
       return render(request, 'posts.html', {'posts':posts} )      
-        
+def adminpage(request):
+     if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  # Redirect to the home page after successful submission
+     else:
+        form = PostForm()
 
+     return render(request, 'admin_home.html', {'form': form})
+           
+
+    
     
     

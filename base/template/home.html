@@ -34,10 +34,16 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'login_view' %}">
-                logout
+            <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'register' %}">
+                Register
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'login_view' %}">
+                Logout
+            </a>
+        </li>
+        
     </ul>
 </div>
 
@@ -49,13 +55,17 @@
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
+                            {% if user.is_authenticated %}
+                                <h1 style="font-size: 2em;">Welcome Mr/Ms {{ user.username }} to </h1>
+                            {% endif %}
                             <h1>CSE DEV</h1>
-                            <span class="subheading">Computer Science and Engineering</span>
+                            <span class="subheading">Computer Science and Engineering club </span>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
+        
         
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
