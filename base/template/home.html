@@ -28,8 +28,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'login_view' %}">logout</a></li>
                     </ul>
@@ -58,7 +56,7 @@
                         <div class="post-preview">
                             <a href="/posts/{{post.id}}/">
                                 <h2 class="post-title">{{ post.title }}</h2>
-                                <h3 class="post-subtitle">{{ post.body }}</h3>
+                                <h3 class="post-subtitle">{{ post.body|truncatechars:200 }}</h3>
                                 <h5>{{ post.date }}</h5>
                             </a>
                             <p class="post-meta">
