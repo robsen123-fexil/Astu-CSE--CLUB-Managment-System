@@ -6,7 +6,7 @@ urlpatterns = [
     path('', views.login_view, name='login_view'),
     path('register/', views.register, name='register'),
     path('home/', views.home, name='home'),
-    path('posts', views.posts, name='posts')
+    path('posts/<str:pk>/', views.posts , name ='posts')
     
 ]
 if settings.DEBUG:

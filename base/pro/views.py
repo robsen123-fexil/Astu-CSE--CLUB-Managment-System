@@ -7,7 +7,7 @@ from django.contrib.auth.models import User , auth
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib import messages
-
+from django.shortcuts import render, get_object_or_404
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -17,7 +17,7 @@ def login_view(request):
         
         if user is not None:
             login(request, user)
-            messages.success(request, 'Login successful!')
+            
             return redirect('home')
         else:
             messages.error(request, 'Invalid username or password.')
@@ -50,9 +50,9 @@ def register(request):
 def home(request):
         posts=Post.objects.all()
         return render(request, 'home.html',{'posts':posts})
-def posts(request):
-         posts=posts.objects.all(all)
-         return render(request,'posts.html' , {'posts':posts})       
+def posts(request, pk):
+      posts=Post.objects.get(id=pk)
+      return render(request, 'posts.html', {'posts':posts} )      
         
 
     

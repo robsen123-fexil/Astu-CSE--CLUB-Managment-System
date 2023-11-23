@@ -37,7 +37,7 @@
             </div>
         </nav>
         <!-- Page Header-->
-        <header class="masthead" style="background-image: url('{% static 'assets/img/home-bg.jpg' %}')">
+        <header class="masthead" style="background-image: url('assets/img/home-bg.jpg' )">
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
@@ -52,14 +52,13 @@
         
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
-                {% for post in posts reversed %}
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <!-- Post preview-->
                         <div class="post-preview">
-                            <a href="/posts/{{post.id}}/">
-                                <h2 class="post-title">{{ post.title }}</h2>
-                                <h3 class="post-subtitle">{{ post.body }}</h3>
-                                <h5>{{ post.date }}</h5>
+                            <a href="#">
+                                <h2 class="post-title">{{ posts.title }}</h2>
+                                <p class="post-subtitle">{{ posts.body }}</p>
+                                <h5>{{ posts.date }}</h5>
                             </a>
                             <p class="post-meta">
                                 Posted by
