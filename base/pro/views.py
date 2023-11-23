@@ -56,16 +56,7 @@ def posts(request, pk):
       posts=Post.objects.get(id=pk)
       return render(request, 'posts.html', {'posts':posts} )      
 def adminpage(request):
-     if request.method == 'POST':
-        form = PostForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')  # Redirect to the home page after successful submission
-     else:
-        form = PostForm()
-
-     return render(request, 'admin_home.html', {'form': form})
-           
+     return render(request,'adminpage.html')       
 
     
     
