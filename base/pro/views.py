@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import PostForm
+from .forms import StudentForm
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -56,8 +57,42 @@ def posts(request, pk):
       posts=Post.objects.get(id=pk)
       return render(request, 'posts.html', {'posts':posts} )      
 def adminpage(request):
-     return render(request,'adminpage.html')       
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  # Redirect to the home page after successful submission
+    else:
+        form = PostForm()
 
-    
+    return render(request, 'adminpage.html', {'form': form})      
+
+
+def add_Student(request):
+    if request.method == 'POST':
+        StudentForm= StudentForm(request.POST)
+
+        if StudentForm.is_valid():
+            # Create a new user
+            username = request.POST['username']
+            password = request.POST['password']
+            new_user = User.objects.create_user(username=username, password=password)
+
+            # Create a new student associated with the user
+            student = student_form.save(commit=False)
+            student.user = new_user
+            student.save()
+
+            # Log in the new user
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+
+            return redirect('home')  # Redirect to home after successful registration
+    else:
+        student_form = StudentForm()
+
+    return render(request, 'adminpage.html', {'student_form': student_form})
+
     
     

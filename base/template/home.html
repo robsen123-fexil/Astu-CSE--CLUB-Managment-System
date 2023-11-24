@@ -34,8 +34,8 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'register' %}">
-                Register
+            <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'adminpage' %}">
+                ADMIN'S PAGE 
             </a>
         </li>
         <li class="nav-item">
@@ -56,7 +56,7 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
                             {% if user.is_authenticated %}
-                                <h1 style="font-size: 2em;">Welcome Mr/Ms {{ user.username }} to </h1>
+                                <h1 style="font-size: 2em;">Mr/ms {{ user.username }} Welcome   To </h1>
                             {% endif %}
                             <h1>CSE DEV</h1>
                             <span class="subheading">Computer Science and Engineering club </span>
