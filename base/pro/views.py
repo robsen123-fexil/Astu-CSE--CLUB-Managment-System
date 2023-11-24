@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from .models import Post
+
 from django.contrib.auth import authenticate
 from django.contrib.auth import authenticate , login 
 from django.contrib.auth.models import User , auth
@@ -8,7 +9,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import PostForm
-from .forms import StudentForm
+
 #from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 
@@ -34,7 +35,7 @@ def login_view(request):
     
 def register(request):
     if request.method=='POST':
-         name=request.POST['name']
+         #name=request.POST['name']
          username=request.POST['username']        
          password=request.POST['password']
          confirm_password=request.POST['confirm_password']
@@ -69,30 +70,7 @@ def adminpage(request):
         form = PostForm()
 
     return render(request, 'adminpage.html', {'form': form})      
+def registeruser(request):
+    return render(request, 'registeruser.html')
 
 
-def add_Student(request):
-     if request.method == 'POST':
-      student_form = StudentForm(request.POST)  # Use the correct form name
-      if student_form.is_valid():
-    # Create a new student associated with the user
-       student = student_form.save(commit=False)
-
-    # Create a new user
-       new_user = User.objects.create_user(username=request.POST['username'])
-       new_user.set_password(request.POST['password'])
-       new_user.save()
-
-      student.user = new_user
-      student.save()
-
-    # Log in the new user
-      user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
-      if user is not None:
-        login(request, user)
-
-      return redirect('home')  # Redirect to home after successful registration
-
-
-    
-    

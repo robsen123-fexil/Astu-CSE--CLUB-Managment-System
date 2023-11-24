@@ -73,25 +73,14 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
-         <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-    <div class="container px-4 px-lg-5">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto py-4 py-lg-0">
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'home' %}">Home</a></li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'registeruser' %}">registeruser</a></li>
             </ul>
-
-            <!-- Register Student Button -->
-          
         </div>
     </div>
 </nav>
-
 
 <!-- Main Content-->
 <main class="mb-4">
@@ -102,7 +91,7 @@
                 <div class="row gx-2 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-8 col-xl-7">
                         <div class="page-heading">
-                            <h1>HEY ADMIN!! Welcome  To CSE_DEV admin team</h1>
+                            <h1>access users of this community </h1>
                             <span class="subheading">This is what I do.</span>
                         </div>
                     </div>
@@ -111,20 +100,7 @@
         </header>
 
         <!-- Admin Post Form -->
-        <div class="container px-4 px-lg-5 py-5">
-            <form method="post" action="{% url 'adminpage' %}">
-                {% csrf_token %}
-                <div class="mb-3">
-                    <label for="title" class="form-label">Title:</label>
-                    <input type="text" class="form-control" id="title" name="title" required>
-                </div>
-                <div class="mb-3">
-                    <label for="body" class="form-label">Body:</label>
-                    <textarea class="form-control" id="body" name="body" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
+       
 
         <!-- Student Registration Form -->
         <div class="container px-4 px-lg-5">
@@ -132,7 +108,8 @@
             {% if error %}
                 <p style="color: red;">{{ error }}</p>
             {% endif %}
-            <form method="post" action="{% url 'adminpage' %}">
+            <form method="post" action="{% url 'add_student' %}">
+
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="first_name">First Name:</label>
