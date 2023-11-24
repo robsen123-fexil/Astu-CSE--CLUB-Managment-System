@@ -108,7 +108,7 @@
             {% if error %}
                 <p style="color: red;">{{ error }}</p>
             {% endif %}
-            <form method="post" action="{% url 'add_student' %}">
+            <form method="post" action="{% url 'registeruser' %}">
 
                 {% csrf_token %}
                 <div class="form-group">

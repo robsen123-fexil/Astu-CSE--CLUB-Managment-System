@@ -53,7 +53,7 @@ def register(request):
               messages.info(request, "Password Is Not The Same")
               return redirect('register')
     else:   
-        return render(request, 'register.html')
+        return render(request, 'registeruser.html')
 def home(request):
         posts=Post.objects.all()
         return render(request, 'home.html',{'posts':posts})
@@ -71,6 +71,33 @@ def adminpage(request):
 
     return render(request, 'adminpage.html', {'form': form})      
 def registeruser(request):
-    return render(request, 'registeruser.html')
+    if request.method == 'POST':
+        # name = request.POST['name']
+        username = request.POST['username']
+        password = request.POST['password']
+        password2 = request.POST['password2']  # Update this line
+        first_name = request.POST['first_name']
+        last_name=request.POST['last_name']
+        email=request.POST['email']
+        if password == password2:
+            if User.objects.filter(username=username).exists():
+                messages.info(request, "Username Already Taken")
+                return redirect('registeruser')
+            else:
+                user = User.objects.create_user(username=username, password=password, first_name=first_name , last_name=last_name, email=email)
+                user.save()
+                return redirect('adminpage')
+        else:
+            messages.info(request, "Password Is Not The Same")
+            return redirect('registeruser')
+    else:
+        return render(request, 'registeruser.html')
+from django.shortcuts import render
+from django.contrib.auth.models import User
 
+def liststudent(request):
+    # Get a list of all users
+    user_list = User.objects.all()
 
+    # Render the admin page with the list of users
+    return render(request, 'liststudent.html', {'user_list': user_list})

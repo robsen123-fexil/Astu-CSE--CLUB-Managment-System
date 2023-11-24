@@ -9,6 +9,7 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('posts/<str:pk>/', views.posts , name ='posts'),
     path('adminpage/',views.adminpage , name='adminpage'),
-    path('registeruser/' , views.registeruser, name ='registeruser')
+    path('registeruser/' , views.registeruser, name ='registeruser'),
+    path('liststudent/', views.liststudent, name='liststudent')
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
