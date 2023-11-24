@@ -120,3 +120,5 @@ def user_info(request):
     user_list = User.objects.all()
 
     return render(request, 'user_info.html', {'user_list': user_list})
+def add_event(request):
+    return render(request, 'add_event.html')
