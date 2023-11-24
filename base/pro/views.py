@@ -101,3 +101,16 @@ def liststudent(request):
 
     # Render the admin page with the list of users
     return render(request, 'liststudent.html', {'user_list': user_list})
+# views.py
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+
+def delete_selected_users(request):
+    if request.method == 'POST':
+        selected_users = request.POST.getlist('selected_users')
+
+        if selected_users:
+            User.objects.filter(id__in=selected_users).delete()
+
+    user_list = User.objects.all()
+    return render(request, 'deleteuser.html', {'user_list': user_list})
