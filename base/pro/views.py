@@ -9,6 +9,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import PostForm
 from .forms import StudentForm
+#from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -69,30 +72,27 @@ def adminpage(request):
 
 
 def add_Student(request):
-    if request.method == 'POST':
-        StudentForm= StudentForm(request.POST)
+     if request.method == 'POST':
+      student_form = StudentForm(request.POST)  # Use the correct form name
+      if student_form.is_valid():
+    # Create a new student associated with the user
+       student = student_form.save(commit=False)
 
-        if StudentForm.is_valid():
-            # Create a new user
-            username = request.POST['username']
-            password = request.POST['password']
-            new_user = User.objects.create_user(username=username, password=password)
+    # Create a new user
+       new_user = User.objects.create_user(username=request.POST['username'])
+       new_user.set_password(request.POST['password'])
+       new_user.save()
 
-            # Create a new student associated with the user
-            student = student_form.save(commit=False)
-            student.user = new_user
-            student.save()
+      student.user = new_user
+      student.save()
 
-            # Log in the new user
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
+    # Log in the new user
+      user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
+      if user is not None:
+        login(request, user)
 
-            return redirect('home')  # Redirect to home after successful registration
-    else:
-        student_form = StudentForm()
+      return redirect('home')  # Redirect to home after successful registration
 
-    return render(request, 'adminpage.html', {'student_form': student_form})
 
     
     
