@@ -48,13 +48,13 @@
       border-color: #ac2925;
     }
   </style>
-  <title>delete users</title>
+  <title> delete_users</title>
 </head>
 <body>
   <div class="container">
     <h1>User List</h1>
 
-    <form method="post" action="{% url 'delete_selected_users' %}">
+    <form method="post" action="{% url 'delete_users' %}">
       {% csrf_token %}
 
       <ul class="user-list">
@@ -62,7 +62,9 @@
           {% if user.username != 'admin' %}
             <li>
               <input type="checkbox" name="selected_users" value="{{ user.id }}">
-              {{ user.username }}
+              <strong>First Name:</strong> {{ user.first_name }}<br>
+              <strong>Username:</strong> {{ user.username }}<br>
+              <strong>Email:</strong> {{ user.email }}
             </li>
           {% endif %}
         {% endfor %}

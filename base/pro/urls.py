@@ -10,8 +10,7 @@ urlpatterns = [
     path('posts/<str:pk>/', views.posts , name ='posts'),
     path('adminpage/',views.adminpage , name='adminpage'),
     path('registeruser/' , views.registeruser, name ='registeruser'),
-    path('liststudent/', views.liststudent, name='liststudent'),
-    path('delete_selected_users/', views.delete_selected_users, name='delete_selected_users'),
-
+    path('delete_users/', views.delete_users, name='delete_users'),
+    path('user_info/', views.user_info, name='user_info'),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

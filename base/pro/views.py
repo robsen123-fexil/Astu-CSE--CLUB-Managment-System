@@ -92,25 +92,31 @@ def registeruser(request):
             return redirect('registeruser')
     else:
         return render(request, 'registeruser.html')
+
+
+
+def delete_users(request):
+    if request.method == 'POST':
+        selected_user_ids = request.POST.getlist('selected_users')
+
+        if selected_user_ids:
+            # Exclude 'admin' from the deletion
+            selected_user_ids = [id for id in selected_user_ids if id != str(User.objects.get(username='admin').id)]
+
+            # Delete selected users
+            User.objects.filter(id__in=selected_user_ids).delete()
+
+            messages.success(request, 'Selected users deleted successfully.')
+            return redirect('delete_users')
+
+    # Get a list of all users excluding 'admin'
+    user_list = User.objects.exclude(username='admin')
+
+    return render(request, 'deleteuser.html', {'user_list': user_list})
 from django.shortcuts import render
 from django.contrib.auth.models import User
 
-def liststudent(request):
-    # Get a list of all users
+def user_info(request):
     user_list = User.objects.all()
 
-    # Render the admin page with the list of users
-    return render(request, 'liststudent.html', {'user_list': user_list})
-# views.py
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-
-def delete_selected_users(request):
-    if request.method == 'POST':
-        selected_users = request.POST.getlist('selected_users')
-
-        if selected_users:
-            User.objects.filter(id__in=selected_users).delete()
-
-    user_list = User.objects.all()
-    return render(request, 'deleteuser.html', {'user_list': user_list})
+    return render(request, 'user_info.html', {'user_list': user_list})
