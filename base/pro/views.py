@@ -132,7 +132,8 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 
 def user_info(request):
-    user_list = User.objects.all()
+    user_list = User.objects.exclude(username='admin')
+   
     
     return render(request, 'user_info.html', {'user_list': user_list})
 def add_event(request):
