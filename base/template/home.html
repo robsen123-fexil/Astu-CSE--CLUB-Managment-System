@@ -40,7 +40,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                                 {% if user.is_authenticated %}
-                                    <li><p class="dropdown-item">Name: {{ users.first_name }} {{ user.last_name }}</p></li>
+                                    <li><p class="dropdown-item">Name: {{ user.first_name }} {{ user.last_name }}</p></li>
                                     <li><p class="dropdown-item">Username: {{ user.username }}</p></li>
                                     <li><p class="dropdown-item">Email: {{ user.email }}</p></li>
                                     <li><hr class="dropdown-divider"></li>
@@ -61,34 +61,38 @@
             </div>
         </nav>
         <!-- Page Header-->
-        <header class="masthead" style="background-image: url('{% static 'assets/img/home-bg.jpg' %}')">
+        <header class="masthead bg-primary text-white" style="background-image: url('{% static 'assets/img/home-bg.jpg' %}')">
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
                             {% if user.is_authenticated %}
-                               
-                                    {%if sex == "M"%}
-                                    <h1 style="font-size: 2em;"></h1> Mr {{ user.username }} Welcome   To </h1>
-                                    {%else%}
-                                    <h1 style="font-size: 2em;"></h1> Ms {{ user.username }} Welcome   To </h1>
-                                    {%endif%}
+                                <h1 style="font-size: 2em;">Mr/ms {{ user.username }} Welcome To </h1>
                             {% endif %}
                             <h1>CSE DEV</h1>
-                            <span class="subheading">Computer Science and Engineering club </span>
+                            <span class="subheading">Computer Science and Engineering club</span>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
         
-        
         <div class="container px-4 px-lg-5">
+            <!-- Block with Latest News heading -->
+            <div class="row gx-4 gx-lg-5 justify-content-start mb-4">
+                <div class="col-md-8 col-lg-6">
+                    <div class="latest-news bg-white text-primary p-3">
+                        <h2>Latest News</h2>
+                        <!-- Add your latest news content here -->
+                    </div>
+                </div>
+            </div>
+        
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 {% for post in posts reversed %}
                     <div class="col-md-10 col-lg-8 col-xl-7">
-                        <!-- Post preview-->
-                        <div class="post-preview">
+                        <!-- Post preview -->
+                        <div class="post-preview mb-4 bg-white p-3">
                             <a href="/posts/{{post.id}}/">
                                 <h2 class="post-title">{{ post.title }}</h2>
                                 <h3 class="post-subtitle">{{ post.body|truncatechars:200 }}</h3>
@@ -96,13 +100,14 @@
                             </a>
                             <p class="post-meta">
                                 Posted by
-                                <a href="#!">CSE_dev heads</a>
+                                <a href="#!" class="text-primary">CSE_dev heads</a>
                             </p>
                         </div>
                     </div>
                 {% endfor %}
+            </div>
+        </div>
         
-               
             </div>
         </div>
         
