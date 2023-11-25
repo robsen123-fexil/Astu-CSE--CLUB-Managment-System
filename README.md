@@ -1,6 +1,6 @@
 
 
-# Database Configuration for Your Project
+# accessiblity of this project
 
 ## Overview
 
