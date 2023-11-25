@@ -21,7 +21,7 @@ class CustomPasswordChangeForm(PasswordChangeForm):
     def clean_new_password1(self):
         password1 = self.cleaned_data.get('new_password1')
 
-        # Remove password too common check
+        # Remove common password check
         # (Note: Removing this check weakens password security)
         # if password1.lower() in self.common_passwords:
         #     raise ValidationError(self.error_messages['password_too_common'])
@@ -30,9 +30,7 @@ class CustomPasswordChangeForm(PasswordChangeForm):
         if len(password1) < 4:
             raise ValidationError("Password must be at least 4 characters.")
         if password1.isdigit():
-            raise ValidationError("Password cannot be entirely numeric.")
+            raise ValidationError("PASSWORD MUST CONTAIN LETTER AND DIGIT.")
         # Add more custom checks as needed
 
         return password1
-
-

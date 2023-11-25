@@ -151,7 +151,7 @@ def reset_password(request):
             user = form.save()
             update_session_auth_hash(request, user)
             messages.success(request, 'Your password was successfully updated!')
-            return redirect('home.html')
+            return redirect('home')
         else:
             # Manually handle form errors without raising exceptions
             for field, errors in form.errors.items():
