@@ -1,6 +1,4 @@
-Certainly! Here's an updated section focused on admin actions, with additional details on the temporary password:
 
----
 
 # Database Configuration for Your Project
 
@@ -45,10 +43,3 @@ When an admin registers a new user, a temporary password is assigned to the user
    - Users set their own secure password during the initial login.
    - This step ensures that users have control over their account security.
 
-### Security Note
-
-For heightened security, it is crucial to emphasize to users that the assigned temporary password should be changed during their initial login. Admins should communicate this security measure clearly to ensure all users set a secure and personalized password for their accounts.
-
----
-
-Feel free to customize this section further based on the specific workflow and security measures implemented in your project.
