@@ -137,24 +137,31 @@ def user_info(request):
     return render(request, 'user_info.html', {'user_list': user_list})
 def add_event(request):
     return render(request, 'add_event.html')
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.contrib.auth import update_session_auth_hash
+from .forms import CustomPasswordChangeForm  # Import your custom form
 
 @login_required
 def reset_password(request):
     if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
+        form = CustomPasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
-            update_session_auth_hash(request, user)  # Update session to prevent logouts
+            update_session_auth_hash(request, user)
             messages.success(request, 'Your password was successfully updated!')
-            return redirect('reset_password')
+            return redirect('home.html')
         else:
-            messages.error(request, 'Please correct the error below.')
+            # Manually handle form errors without raising exceptions
+            for field, errors in form.errors.items():
+                for error in errors:
+                    if 'password' in field:  # Check if the error is related to the password
+                        messages.error(request, f"Password error: {error}")
+                    # Add more specific checks for other fields if needed
+
+            return redirect('reset_password')
     else:
-        form = PasswordChangeForm(request.user)
+        form = CustomPasswordChangeForm(request.user)
 
     return render(request, 'resetpassword.html', {'form': form})
