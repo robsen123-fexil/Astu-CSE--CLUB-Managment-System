@@ -45,7 +45,7 @@
                                     <li><p class="dropdown-item">Email: {{ user.email }}</p></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="{% url 'login_view' %}">Logout</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'Reset_password' %}">Reset password</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'reset_password' %}">Reset password</a></li>
                                 {% else %}
                                     <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
                                 {% endif %}
