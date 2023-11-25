@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User
 
 
 
@@ -11,9 +12,7 @@ class Post(models.Model):
         return self.title
 from django.db import models
 
-class User(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
-    email = models.EmailField()
-    username = models.CharField(max_length=100)
+
+class info(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    sex = models.CharField(max_length = 10,default = "M")

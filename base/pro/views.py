@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from .models import Post
+from .models import Post, info
 
 from django.contrib.auth import authenticate
 from django.contrib.auth import authenticate , login 
@@ -56,7 +56,18 @@ def register(request):
         return render(request, 'registeruser.html')
 def home(request):
         posts=Post.objects.all()
-        return render(request, 'home.html',{'posts':posts})
+        user = request.user
+        print(user.username)
+        userInfo = ""
+        sex = "M"
+        if info.objects.filter(user = user).exists():
+           
+            userInfo = info.objects.get(user = user)
+            print(userInfo)
+        if userInfo and userInfo.sex == "F":
+            sex = "F"
+            print(sex)
+        return render(request, 'home.html',{'posts':posts,"users":user,"sex":sex})
 def posts(request, pk):
       posts=Post.objects.get(id=pk)
       return render(request, 'posts.html', {'posts':posts} )      
@@ -86,6 +97,10 @@ def registeruser(request):
             else:
                 user = User.objects.create_user(username=username, password=password, first_name=first_name , last_name=last_name, email=email)
                 user.save()
+                users = User.objects.get(username = username, email = email)
+                print(users)
+                userInfo = info(user = users, sex = "F" )
+                userInfo.save()
                 return redirect('adminpage')
         else:
             messages.info(request, "Password Is Not The Same")
@@ -118,7 +133,9 @@ from django.contrib.auth.models import User
 
 def user_info(request):
     user_list = User.objects.all()
-
+    
     return render(request, 'user_info.html', {'user_list': user_list})
 def add_event(request):
     return render(request, 'add_event.html')
+def Reset_password(request):
+    return render(request, 'resetpassword.html')        

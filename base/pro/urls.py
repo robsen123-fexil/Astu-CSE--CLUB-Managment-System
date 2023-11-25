@@ -12,6 +12,7 @@ urlpatterns = [
     path('registeruser/' , views.registeruser, name ='registeruser'),
     path('delete_users/', views.delete_users, name='delete_users'),
     path('user_info/', views.user_info, name='user_info'),
-    path('add_event/', views.add_event, name='add_event')
+    path('add_event/', views.add_event, name='add_event'),
+    path('Reset_password', views.Reset_password, name='Reset_password')
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
