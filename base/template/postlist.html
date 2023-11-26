@@ -2,34 +2,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Post List</title>
 </head>
 <body>
 
-  <h2>Post List</h2>
+  <header>
+    <h1>POST LIST</h1>
+  </header>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Body</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for post in posts %}
-        <tr>
-          <td>{{ post.title }}</td>
-          <td>{{ post.body }}</td>
-          <td>
-            <a href="{% url 'deletepost' post.id %}">Delete</a>
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <h2>LATEST EVENTS</h2>
+
+  <ul>
+    {% for post in posts %}
+      <li>{{ post.title }}</li>
+    {% endfor %}
+  </ul>
 
 </body>
 </html>

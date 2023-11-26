@@ -36,6 +36,9 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
+                <th>Attendance</th>
+                <th>report</th>
+                <th>contest score's</th>
             </tr>
         </thead>
         <tbody>
@@ -45,6 +48,9 @@
                     <td>{{ user.first_name }}</td>
                     <td>{{ user.last_name }}</td>
                     <td>{{ user.email }}</td>
+                    <td>{{ attendance }}</td>
+                    <td>{{ report }}</td>
+                    <td>{{ contest_score }}</td>
                 </tr>
             {% endfor %}
         </tbody>

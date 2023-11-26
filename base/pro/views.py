@@ -143,6 +143,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import update_session_auth_hash
 from .forms import CustomPasswordChangeForm  # Import your custom form
+from django.shortcuts import render, get_object_or_404
 
 @login_required
 def reset_password(request):
@@ -166,13 +167,25 @@ def reset_password(request):
         form = CustomPasswordChangeForm(request.user)
 
     return render(request, 'resetpassword.html', {'form': form})
-def deletepost(request):
-   if request.method == 'POST':
-        selected_posts = request.POST.getlist('selected_posts')
-        Post.objects.filter(id__in=selected_posts).delete()
-        messages.success(request, 'Selected posts deleted successfully!')
-        return redirect('post_list')
-def postlist(request):
+
+
+def post_list(request):
     posts = Post.objects.all()
     return render(request, 'postlist.html', {'posts': posts})
-  
+
+from .forms import DeletePostForm
+
+def delete_selected_posts(request):
+    if request.method == 'POST':
+        form = DeletePostForm(request.POST)
+        if form.is_valid():
+            selected_posts = form.cleaned_data['selected_posts']
+            selected_posts.delete()
+            return redirect('post_list')
+    else:
+        form = DeletePostForm()
+
+
+    return render(request, 'deletepost.html', {'form': form})
+def apply(request):
+    return redirect(request, 'register.html')
