@@ -1,63 +1,85 @@
-<<<<<<< HEAD
-Certainly! Here's an updated section focused on admin actions, with additional details on the temporary password:
+# CSEC Dev Astu Management Club
 
----
+## Introduction
+Welcome to the CSEC Dev Astu Management Club! This README file provides essential information for administrators and users to navigate and utilize the club's management system.
 
-# Database Configuration for Your Project
-=======
+## Admin Credentials
+- **Username:** 'admin'
+- **Password:** '12345'
 
+## Admin Accessibility
 
-# accessiblity of this project
->>>>>>> a8a7db9e9cb011ec7d052d7aa2f586cb25124e93
+### 1. Home
+The admin has access to the homepage for general information.
 
-## Overview
+### 2. Admin Page
+Upon successful login, the admin is redirected to the admin page, where the following functionalities are available:
 
-This repository contains the source code for a project that involves user management, event tracking, and contests. It uses a simple authentication system with an admin account having privileged access to manage users, events, and user information. The database is configured with the following credentials:
+- **Register New User:**
+  - Admin can add new users by providing their first name, last name, email, temporary password, and username.
 
-- **Database Admin:**
-  - Username: `admin`
-  - Password: `12345`
+- **Delete User:**
+  - Admin can remove users from the list by selecting the user and confirming the deletion.
 
-## Admin Authority
+- **User Info:**
+  - Admin can view user information, including attendance, contest scores, and other details.
 
-The admin account is the primary authority for database management. Admins can perform the following actions:
+- **Add Event:**
+  - Admin can add events by providing a title and body. The added events will be displayed on the homepage.
 
-### Registering New Users
+- **Post List:**
+  - Admin can view a list of posted events.
 
-Admins have the ability to register new users by providing the necessary information, including:
+- **Delete Post:**
+  - Admin can delete events by selecting them from the list and confirming deletion.
 
-- First Name
-- Last Name
-- Email
-- Username
-- Temporary Password
+## Adding a Student (Admin Steps)
+To add a student, follow these steps:
 
-#### Temporary Password
+1. Log in as the admin using the provided credentials.
+2. Navigate to the admin page.
+3. Choose the "Register User" option.
+4. Enter the student's first name, last name, email, temporary password, and username.
+5. Submit the information.
 
-When an admin registers a new user, a temporary password is assigned to the user. This temporary password is a security measure to ensure initial access. Upon first login, users are required to change their temporary password to a secure one.
+## Deleting a User (Admin Steps)
+To remove a user, follow these steps:
 
-### User Registration Workflow
+1. Log in as the admin using the provided credentials.
+2. Navigate to the admin page.
+3. Choose the "Delete User" option.
+4. Select the user to be deleted.
+5. Confirm the deletion.
 
-1. **Admin Registration:**
-   - Admins navigate to the registration page to add a new user.
-   - They input the user's first name, last name, email, username, and assign a temporary password.
-   - A unique temporary password is generated for added security.
+## Adding an Event (Admin Steps)
+To add an event, follow these steps:
 
-2. **User First Login:**
-   - Users receive their temporary password and log in for the first time.
-   - The system prompts users to change their temporary password immediately.
+1. Log in as the admin using the provided credentials.
+2. Navigate to the admin page.
+3. Choose the "Add Event" option.
+4. Fill in the title and body for the event.
+5. Submit the event.
 
-3. **Password Update:**
-   - Users set their own secure password during the initial login.
-   - This step ensures that users have control over their account security.
+## Deleting an Event (Admin Steps)
+To remove an event, follow these steps:
 
-<<<<<<< HEAD
-### Security Note
+1. Log in as the admin using the provided credentials.
+2. Navigate to the admin page.
+3. Choose the "Delete Post" option.
+4. Select the event to be deleted.
+5. Confirm the deletion.
 
-For heightened security, it is crucial to emphasize to users that the assigned temporary password should be changed during their initial login. Admins should communicate this security measure clearly to ensure all users set a secure and personalized password for their accounts.
+## User/Student Accessibility
+Users/students can access the system if and only if they have been provided with a username and password by the admin. Once logged in, users have access to:
 
----
+- **Home:**
+  - Displays general information and upcoming events.
 
-Feel free to customize this section further based on the specific workflow and security measures implemented in your project.
-=======
->>>>>>> a8a7db9e9cb011ec7d052d7aa2f586cb25124e93
+- **Profile Dropdown:**
+  - Shows the username and email of the logged-in user.
+
+- **Reset Password:**
+  - Users can reset their passwords, which must be at least 4 characters long and include both letters and numbers.
+
+## Conclusion
+The CSEC Dev Astu Management Club's system is designed to streamline user management and event organization. Admins can easily add or remove users and events, while users can access personalized information and reset their passwords. Enjoy using the system and upcoming Latest events !
