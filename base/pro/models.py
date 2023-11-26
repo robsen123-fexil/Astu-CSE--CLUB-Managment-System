@@ -16,3 +16,13 @@ from django.db import models
 class info(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     sex = models.CharField(max_length = 10,default = "M")
+
+
+class Application(models.Model):
+    email = models.EmailField()
+    programming_preference = models.CharField(max_length=100)
+    year = models.CharField(max_length=20)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.email 

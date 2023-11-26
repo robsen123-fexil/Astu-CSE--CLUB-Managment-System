@@ -33,3 +33,11 @@ class DeletePostForm(forms.Form):
         queryset=Post.objects.all(),
         widget=forms.CheckboxSelectMultiple
     )
+
+from django import forms
+from .models import Application
+
+class YourForm(forms.ModelForm):
+    class Meta:
+        model = Application
+        fields = ['email', 'programming_preference', 'year', 'description']
