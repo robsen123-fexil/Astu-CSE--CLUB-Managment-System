@@ -14,5 +14,7 @@ urlpatterns = [
     path('user_info/', views.user_info, name='user_info'),
     path('add_event/', views.add_event, name='add_event'),
     path('reset_password/', views.reset_password, name='reset_password'),
+    path('deletepost', views.deletepost, name="deletepost"),
+    path('postlist', views.postlist, name='postlist')
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

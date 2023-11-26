@@ -1,0 +1,12 @@
+<!-- templates/post_list.html -->
+<h2>Post List</h2>
+<form method="post" action="{% url 'deletepost' %}">
+  {% csrf_token %}
+  {% for post in posts %}
+    <div>
+      <input type="checkbox" name="selected_posts" value="{{ post.id }}">
+      <span>{{ post.title }} - {{ post.body }}</span>
+    </div>
+  {% endfor %}
+  <button type="submit">Delete Selected</button>
+</form>

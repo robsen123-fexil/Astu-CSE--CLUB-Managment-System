@@ -166,3 +166,13 @@ def reset_password(request):
         form = CustomPasswordChangeForm(request.user)
 
     return render(request, 'resetpassword.html', {'form': form})
+def deletepost(request):
+   if request.method == 'POST':
+        selected_posts = request.POST.getlist('selected_posts')
+        Post.objects.filter(id__in=selected_posts).delete()
+        messages.success(request, 'Selected posts deleted successfully!')
+        return redirect('post_list')
+def postlist(request):
+    posts = Post.objects.all()
+    return render(request, 'postlist.html', {'posts': posts})
+  
