@@ -32,42 +32,39 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+    
     <div class="collapse navbar-collapse" id="navbarResponsive">
-        <div class="row align-items-center">
-            <ul class="navbar-nav ms-auto py-4 py-lg-0 col-md-6">
-                <li class="nav-item">
-                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="https://t.me/BiniTech" target="_blank">
-                        HELP CENTER
-                    </a>
-                </li>
-               
-                <li class="nav-item">
-                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'login_view' %}">
-                        Logout
-                    </a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ms-auto py-4 py-lg-0 col-md-6">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-user"></i> Profile
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                        {% if user.is_authenticated %}
-                            <li><p class="dropdown-item">Name: {{ user.first_name }} {{ user.last_name }}</p></li>
-                            <li><p class="dropdown-item">Username: {{ user.username }}</p></li>
-                            <li><p class="dropdown-item">Email: {{ user.email }}</p></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{% url 'login_view' %}">Logout</a></li>
-                            <li><a class="dropdown-item" href="{% url 'reset_password' %}">Reset password</a></li>
-                        {% else %}
-                            <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
-                        {% endif %}
-                    </ul>
-                </li>
-            </ul>
-        </div>
+        <ul class="navbar-nav ms-auto py-4 py-lg-0">
+            <li class="nav-item">
+                <a class="nav-link px-lg-3 py-3 py-lg-4" href="https://t.me/BiniTech" target="_blank">
+                    HELP CENTER
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'login_view' %}">
+                    Logout
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user"></i> Profile
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                    {% if user.is_authenticated %}
+                        <li><p class="dropdown-item">Name: {{ user.first_name }} {{ user.last_name }}</p></li>
+                        <li><p class="dropdown-item">Username: {{ user.username }}</p></li>
+                        <li><p class="dropdown-item">Email: {{ user.email }}</p></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'login_view' %}">Logout</a></li>
+                        <li><a class="dropdown-item" href="{% url 'reset_password' %}">Reset password</a></li>
+                    {% else %}
+                        <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </li>
+        </ul>
     </div>
+    
     
 
 
@@ -102,13 +99,15 @@
             </div>
         
             <div class="row gx-4 gx-lg-5 justify-content-center">
+                
                 {% for post in posts reversed %}
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <!-- Post preview -->
                         <div class="post-preview mb-4 bg-white p-3">
-                            <a href="/posts/{{post.id}}/">
-                                <h2 class="post-title">{{ post.title }}</h2>
-                                <h3 class="post-subtitle">{{ post.body|truncatechars:200 }}</h3>
+                            <a href="/posts/{{ post.id }}/">
+                                <!-- Add the image tag here -->
+                                <h2 style="font-size: 1.5rem;" class="post-title">{{ post.title }}</h2>
+                                <h3  style="font-size: 1.3rem;" class="post-subtitle">{{ post.body|truncatechars:200 }}</h3>
                                 <h5>{{ post.date }}</h5>
                             </a>
                             <p class="post-meta">
@@ -119,6 +118,7 @@
                     </div>
                 {% endfor %}
             </div>
+            
         </div>
         
             </div>

@@ -58,7 +58,12 @@ body {
 <body>
 <img src="C:\Users\Rrobba\Documents\astu\astu-cse\base\static\assets\img\about-bg.jpg" alt="">
 <div class="header">
+
+  {%load static%}
+  <img style="width: 40rem; height: 22rem;" src="{% static 'assets/img/login.jpg' %}" alt="Post Image" class="post-image">
+
   <h2>{{posts.title}}</h2>
+
 </div>
 
 <div class="row">
@@ -67,6 +72,7 @@ body {
       <form method="post" action="{% url 'home' %}">
         {% csrf_token %}
         <a class="cardAnchor" style="text-decoration: none;" href="">
+          
           <h1></h1>
           <h5 style="font-family: Arial, Helvetica, sans-serif; font-size: large;">
           {{posts.body}}</h5>

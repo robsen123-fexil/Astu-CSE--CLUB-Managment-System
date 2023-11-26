@@ -187,20 +187,3 @@ def delete_selected_posts(request):
 
 
     return render(request, 'deletepost.html', {'form': form})
-# views.py
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .models import Application
-from .forms import YourForm
-
-def apply(request):
-    if request.method == 'POST':
-        form = YourForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Thank you! You have applied successfully. We will reach you soon with your email.')
-            return redirect('home')
-    else:
-        form = YourForm()
-
-    return render(request, 'applying.html', {'form': form})

@@ -16,6 +16,6 @@ urlpatterns = [
     path('reset_password/', views.reset_password, name='reset_password'),
     path('postlist/', views.post_list, name='post_list'),
     path('delete_selected_posts/', views.delete_selected_posts, name='delete_selected_posts'),
-    path('apply', views.apply, name='apply')
+   
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
