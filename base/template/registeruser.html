@@ -83,6 +83,12 @@
                     <div class="row gx-2 gx-lg-5 justify-content-center">
                         <div class="col-md-10 col-8 col-xl-7">
                             <div class="page-heading">
+                                <h1>Add Student</h1>
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <p style="color: red; font-size: 36px; font-weight: bold;">{{ message }}</p>
+                                    {% endfor %}
+                                {% endif %}
                                 <h1> Add User </h1>
                                 <span class="subheading">This is what I do.</span>
                             </div>
@@ -95,11 +101,9 @@
 
             <!-- Student Registration Form -->
             <div class="container px-4 px-lg-5">
-                <h1>Add Student</h1>
-                {% if error %}
-                    <p style="color: red;">{{ error }}</p>
-                {% endif %}
+                
                 <form method="post" action="{% url 'registeruser' %}">
+                    
 
                     {% csrf_token %}
                     <div class="form-group">

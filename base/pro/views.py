@@ -92,7 +92,7 @@ def registeruser(request):
         email=request.POST['email']
         if password == password2:
             if User.objects.filter(username=username).exists():
-                messages.info(request, "Username Already Taken")
+                messages.error(request, "Username Already Taken")
                 return redirect('registeruser')
             else:
                 user = User.objects.create_user(username=username, password=password, first_name=first_name , last_name=last_name, email=email)
@@ -103,7 +103,7 @@ def registeruser(request):
                 userInfo.save()
                 return redirect('adminpage')
         else:
-            messages.info(request, "Password Is Not The Same")
+            messages.error(request, "Password Is Not The Same")
             return redirect('registeruser')
     else:
         return render(request, 'registeruser.html')
