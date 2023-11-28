@@ -7,6 +7,10 @@ Welcome to the CSEC Dev Astu Management Club! This README file provides essentia
 - **Username:** 'admin'
 - **Password:** '12345'
 
+## One Example Prototype For  User  Credentials /Login/
+- **Username:** 'robsen'
+- **Password:** '12345
+  
 ## Admin Accessibility
 
 ### 1. Home
