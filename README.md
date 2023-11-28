@@ -6,10 +6,6 @@ Welcome to the CSEC Dev Astu Management Club! This README file provides essentia
 ## Admin Credentials
 - **Username:** 'admin'
 - **Password:** '12345'
-
-## One Example Prototype For  User  Credentials /Login/
-- **Username:** 'robsen'
-- **Password:** '12345
   
 ## Admin Accessibility
 
@@ -74,6 +70,11 @@ To remove an event, follow these steps:
 5. Confirm the deletion.
 
 ## User/Student Accessibility
+
+## One Example Prototype For  User  Credentials /Login/
+- **Username:** 'robsen'
+- **Password:** '12345
+
 Users/students can access the system if and only if they have been provided with a username and password by the admin. Once logged in, users have access to:
 
 - **Home:**
