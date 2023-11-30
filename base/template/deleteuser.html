@@ -58,6 +58,11 @@
       {% csrf_token %}
 
       <ul class="user-list">
+        {% if messages %}
+        {% for message in messages %}
+            <p style="color: red; font-size: 36px; font-weight: bold;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
         {% for user in user_list %}
           {% if user.username != 'admin' %}
             <li>

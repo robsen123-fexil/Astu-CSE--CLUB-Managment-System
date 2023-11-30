@@ -61,6 +61,9 @@ def registeruser(request):
             if User.objects.filter(username=username).exists():
                 messages.error(request, "Username Already Taken")
                 return redirect('registeruser')
+            if User.objects.filter(email=email).exists():
+                messages.error(request, "Email Is Already In Use")
+                return redirect('registeruser')
             else:
                 user = User.objects.create_user(username=username, password=password, first_name=first_name , last_name=last_name, email=email)
                 user.save()
@@ -154,3 +157,8 @@ def delete_selected_posts(request):
 
 
     return render(request, 'deletepost.html', {'form': form})
+def dashboard(request):
+    user_list = User.objects.exclude(username='admin')
+   
+    
+    return render(request, 'dashboard.html', {'user_list': user_list})

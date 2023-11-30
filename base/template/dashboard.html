@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Information</title>
+    <title>User Dashboard</title>
     <style>
         table {
             font-family: Arial, sans-serif;
@@ -27,7 +27,7 @@
     </style>
 </head>
 <body>
-    <h1>User Information</h1>
+    <h1>User Dashboard</h1>
 
     <table>
         <thead>
@@ -36,7 +36,9 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
-                
+                <th>Attendance</th>
+                <th>report</th>
+                <th>contest score's</th>
             </tr>
         </thead>
         <tbody>
@@ -46,7 +48,9 @@
                     <td>{{ user.first_name }}</td>
                     <td>{{ user.last_name }}</td>
                     <td>{{ user.email }}</td>
-                    
+                    <td>{{ attendance }}</td>
+                    <td>{{ report }}</td>
+                    <td>{{ contest_score }}</td>
                 </tr>
             {% endfor %}
         </tbody>
