@@ -12,10 +12,12 @@ urlpatterns = [
     path('registeruser/' , views.registeruser, name ='registeruser'),
     path('delete_users/', views.delete_users, name='delete_users'),
     path('user_info/', views.user_info, name='user_info'),
+   path('saveata/<int:user_id>/', views.savedata, name='savedata'),
     path('add_event/', views.add_event, name='add_event'),
     path('reset_password/', views.reset_password, name='reset_password'),
     path('postlist/', views.post_list, name='post_list'),
     path('delete_selected_posts/', views.delete_selected_posts, name='delete_selected_posts'),
-    path('dashboard/', views.dashboard, name='dashboard')
+    path('dashboard/', views.dashboard, name='dashboard'),
+    
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

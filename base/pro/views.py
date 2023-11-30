@@ -47,7 +47,9 @@ def adminpage(request):
     else:
         form = PostForm()
 
-    return render(request, 'adminpage.html', {'form': form})      
+    return render(request, 'adminpage.html', {'form': form})   
+
+
 def registeruser(request):
     if request.method == 'POST':
         # name = request.POST['name']
@@ -162,3 +164,23 @@ def dashboard(request):
    
     
     return render(request, 'dashboard.html', {'user_list': user_list})
+# views.py
+
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from .models import UserProfile
+from django.http import JsonResponse
+
+@require_POST
+def savedata(request, user_id):
+    try:
+        user_profile = UserProfile.objects.get(user_id=user_id)
+        user_profile.attendance = int(request.POST.get('attendance', 0))
+        user_profile.report = request.POST.get('report', '')
+        user_profile.contest_score = int(request.POST.get('contest_score', 0))
+        user_profile.save()
+
+        return JsonResponse({'status': 'success'})
+    except UserProfile.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'User not found'})
+

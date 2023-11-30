@@ -1,5 +1,3 @@
-<!-- user_info.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,23 +35,85 @@
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Attendance</th>
-                <th>report</th>
-                <th>contest score's</th>
+                <th>Report</th>
+                <th>Contest Scores</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             {% for user in user_list %}
-                <tr>
+                <tr id="user-row-{{ user.id }}">
                     <td>{{ user.username }}</td>
                     <td>{{ user.first_name }}</td>
                     <td>{{ user.last_name }}</td>
                     <td>{{ user.email }}</td>
-                    <td>{{ attendance }}</td>
-                    <td>{{ report }}</td>
-                    <td>{{ contest_score }}</td>
+                    <td>
+                        <input type="text" name="attendance" id="attendance-{{ user.id }}" value="{{ user.attendance }}">
+                    </td>
+                    <td><input type="text" name="report" value="{{ user.report }}"></td>
+                    <td><input type="text" name="contest_score" value="{{ user.contest_score }}"></td>
+                    <td>
+                        <button onclick="saveChanges({{ user.id }})">Save Changes</button>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+
+    <form id="csrf-form">
+        {% csrf_token %}
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        const csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+
+        // Generate JavaScript array with attendance data
+        const attendanceData = [
+            {% for user in user_list %}
+                { id: {{ user.id }}, attendance: "{{ user.attendance }}" },
+            {% endfor %}
+        ];
+
+        function saveChanges(userId) {
+            const row = document.getElementById(`user-row-${userId}`);
+            const attendanceInput = row.querySelector('input[name="attendance"]');
+            const attendance = attendanceInput.value;
+
+            // Save the attendance value to localStorage
+            localStorage.setItem(`attendance-${userId}`, attendance);
+
+            $.ajax({
+                type: "POST",
+                url: `/save_user_data/${userId}/`,
+                data: {
+                    attendance: attendance,
+                    csrfmiddlewaretoken: csrfToken,
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response.status === 'success') {
+                        // Optional: Show a success message
+                    } else {
+                        // Optional: Show an error message
+                        console.error(response.message);
+                    }
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        }
+
+        // Restore attendance values from localStorage on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            attendanceData.forEach(data => {
+                const storedAttendance = localStorage.getItem(`attendance-${data.id}`);
+                if (storedAttendance !== null) {
+                    document.getElementById(`attendance-${data.id}`).value = storedAttendance;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
