@@ -50,8 +50,12 @@
                     <td>
                         <input type="text" name="attendance" id="attendance-{{ user.id }}" value="{{ user.attendance }}">
                     </td>
-                    <td><input type="text" name="report" value="{{ user.report }}"></td>
-                    <td><input type="text" name="contest_score" value="{{ user.contest_score }}"></td>
+                    <td>
+                        <input type="text" name="report" id="report-{{ user.id }}" value="{{ user.report }}">
+                    </td>
+                    <td>
+                        <input type="text" name="contest_score" id="contest-score-{{ user.id }}" value="{{ user.contest_score }}">
+                    </td>
                     <td>
                         <button onclick="saveChanges({{ user.id }})">Save Changes</button>
                     </td>
@@ -68,26 +72,40 @@
     <script>
         const csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
 
-        // Generate JavaScript array with attendance data
-        const attendanceData = [
+        // Generate JavaScript array with user data
+        const userData = [
             {% for user in user_list %}
-                { id: {{ user.id }}, attendance: "{{ user.attendance }}" },
+                {
+                    id: {{ user.id }},
+                    attendance: "{{ user.attendance }}",
+                    report: "{{ user.report }}",
+                    contest_score: "{{ user.contest_score }}"
+                },
             {% endfor %}
         ];
 
         function saveChanges(userId) {
             const row = document.getElementById(`user-row-${userId}`);
             const attendanceInput = row.querySelector('input[name="attendance"]');
-            const attendance = attendanceInput.value;
+            const reportInput = row.querySelector('input[name="report"]');
+            const contestScoreInput = row.querySelector('input[name="contest_score"]');
 
-            // Save the attendance value to localStorage
+            const attendance = attendanceInput.value;
+            const report = reportInput.value;
+            const contestScore = contestScoreInput.value;
+
+            // Save the values to localStorage
             localStorage.setItem(`attendance-${userId}`, attendance);
+            localStorage.setItem(`report-${userId}`, report);
+            localStorage.setItem(`contest-score-${userId}`, contestScore);
 
             $.ajax({
                 type: "POST",
                 url: `/save_user_data/${userId}/`,
                 data: {
                     attendance: attendance,
+                    report: report,
+                    contest_score: contestScore,
                     csrfmiddlewaretoken: csrfToken,
                 },
                 success: function(response) {
@@ -105,12 +123,23 @@
             });
         }
 
-        // Restore attendance values from localStorage on page load
+        // Restore values from localStorage on page load
         document.addEventListener('DOMContentLoaded', () => {
-            attendanceData.forEach(data => {
+            userData.forEach(data => {
                 const storedAttendance = localStorage.getItem(`attendance-${data.id}`);
+                const storedReport = localStorage.getItem(`report-${data.id}`);
+                const storedContestScore = localStorage.getItem(`contest-score-${data.id}`);
+
                 if (storedAttendance !== null) {
                     document.getElementById(`attendance-${data.id}`).value = storedAttendance;
+                }
+
+                if (storedReport !== null) {
+                    document.getElementById(`report-${data.id}`).value = storedReport;
+                }
+
+                if (storedContestScore !== null) {
+                    document.getElementById(`contest-score-${data.id}`).value = storedContestScore;
                 }
             });
         });
