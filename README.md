@@ -1,5 +1,5 @@
 # CSEC Dev Astu Management Club
-
+# django python framework
 ## Introduction
 Welcome to the CSEC Dev Astu Management Club! This README file provides essential information for administrators and users to navigate and utilize the club's management system.
 
